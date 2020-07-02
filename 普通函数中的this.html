@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//先看this在什么作用于下，
+//在全局下，普通对象if for {} ()没有特殊情况指向window
+//在局部作用域（function），普通的谁调用指向谁
+
+        var name = '戴沐白'
+        function foo(){
+            var name = "唐三";
+            var age = 13;
+            console.log(this.name)
+        }
+        var person = {
+            name : '朱竹清',
+            age: 13,
+            dec:'幽冥灵猫',
+            foo:foo,
+            ao:{
+                name:'奥斯卡',
+                foo:foo
+            },
+            do:this.name//window
+        }
+        console.log(person)
+        //谁调用指向谁
+        foo()//戴沐白，this指向window
+        person.foo()//朱竹清，this指向person
+        person.ao.foo()//奥斯卡，this指向ao
+    </script>
+</body>
+</html>

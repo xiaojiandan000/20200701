@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+    }
+</style>
+<body>
+    <div></div>
+    <script>
+        //在事件处理函数中的this，指向的是（触发事件的元素），不是绑定时间的元素，/，
+        var node = document.getElementsByTagName('div')[0];
+        node.onclick = function(){
+            console.log(this)
+        }
+
+      
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var name  = '戴沐白'
+        function foo(){
+            console.log(arguments)
+            var name  = '唐三';
+            console.log(this.name)
+        }
+        var zzq = {
+            name : '朱竹清',
+            foo:foo
+        }
+        var ask = {
+            name:'奥斯卡',
+            foo:foo,
+            cname:this.name
+        }
+        var xw = {
+            name : '小舞',
+            foo:foo
+        }
+        // foo();
+        // zzq.foo();
+        // ask.foo();
+
+        foo.call(ask,'大香肠')//call()改变function函数中this指向，参一指定this指向的对象，参二-参n，给调用函数foo传入参数
+        ask.foo.call(this)//foo中的this指向ask改变window
+        xw.foo();
+        xw.foo.apply(window,[1,2,3,4])//apply()改变function函数中this指向,参一指定this指向的对象，参二为数组，调用函数传入实参
+        xw.foo.bind(window)('123',2)//bind()改变function函数中this指向，加上执行符()才能触发，参数指定this指向的对象
+
+        // 问题：call、apply、bind的区别?
+    </script>
+</body>
+</html>

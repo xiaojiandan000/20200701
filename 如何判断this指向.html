@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        1、：看this在哪，全局下一定指向window
+        2、fuanction函数中
+            看是否有call、applay，bind，有的话参一是谁this就指向谁
+            看是否是事件处理函数，是--->触发事件元素
+            调用函数是否是new，是构造函数，this指向new实例化对象
+            以上都没有，那就是谁调用就指向谁
+        */
+
+
+        // var num = 1;
+        // var myObject = {
+        //     num: 2,
+        //     add: function () {
+        //         this.num = 3;
+        //         (function () {
+        //             console.log(this.num);
+        //             this.num = 4;
+        //         })();
+        //         console.log(this.num);
+        //     },
+        //     sub: function () {
+        //         console.log(this.num)
+        //     }
+        // }
+        // myObject.add();//1，3
+        // console.log(myObject.num);//
+        // // console.log(num);
+        // // var sub = myObject.sub;
+        // sub();
+
+
+        // var name = 'window'        
+        // var person1 = {
+        //     name: 'person1',
+        //     show1: function () {
+        //         console.log(this.name)
+        //     },
+        //     show3: function () {
+        //         return function () {
+        //             console.log(this.name)
+        //         }
+        //     }
+        // }
+        // var person2 = { name: 'person2' }
+
+        // person1.show1()//person1
+        // person1.show1.call(person2)//person2
+
+        // person1.show3()()//window
+            //   var res = person1.show();---->res存的是show3函数的返回值
+            //   res();
+        // person1.show3().call(person2)//person2
+        // person1.show3.call(person2)()//window
+
+
+        // var name = "戴沐白"
+        // (function(){
+        //     var name = "唐三"
+        //    console.log(this.name) 
+        // })()
+
+
+        //嵌套函数，父函数中的this不等于子函数中的this
+
+        // (function(){
+        //     console.log(this)
+        //     return function(){
+        //         console.log(this)
+        //     }
+        // })().call(this)//window
+        var obj  = {};
+        (function(){
+            console.log(this)//obj
+            return function(){
+                console.log(this)//window
+            }
+        }).call(obj)()
+    </script>
+</body>
+
+</html>
